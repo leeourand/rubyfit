@@ -350,6 +350,8 @@ static void pass_device_info(VALUE handler, const FIT_DEVICE_INFO_MESG *mesg) {
 		rb_hash_aset(rh, rb_str_new2("timestamp"), UINT2NUM(mesg->timestamp + GARMIN_TIME_OFFSET));
 	if(mesg->serial_number != FIT_UINT32Z_INVALID)
 		rb_hash_aset(rh, rb_str_new2("serial_number"), UINT2NUM(mesg->serial_number));
+  if(*mesg->product_name != FIT_STRING_INVALID)
+    rb_hash_aset(rh, rb_str_new2("product_name"), rb_str_new2(mesg->product_name));
 	if(mesg->manufacturer != FIT_MANUFACTURER_INVALID)
 		rb_hash_aset(rh, rb_str_new2("manufacturer"), UINT2NUM(mesg->manufacturer));
 	if(mesg->product != FIT_UINT16_INVALID)
